@@ -1,0 +1,15 @@
+amqp==2.2.2
+Babel==2.5.3
+billiard==3.5.0.3
+celery==4.2.0rc4
+flower==0.9.2
+kombu==4.2.0
+pytz==2018.3
+redis==2.10.6
+tornado==5.0.2
+vine==1.1.4
+cognitive-face==1.4.1
+idna==2.7
+Pillow==5.2.0
+requests==2.19.1
+urllib3==1.23
