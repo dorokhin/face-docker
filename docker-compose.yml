@@ -7,12 +7,17 @@ services:
     restart: always
     ports:
      - "5000:5000"
+
+    volumes:
+     - static-content:/uploads
     depends_on:
       - redis
   worker:
     build:
       context: celery-queue
       dockerfile: Dockerfile
+    volumes:
+     - static-content:/uploads
     depends_on:
       - redis
   monitor:
@@ -27,3 +32,6 @@ services:
       - redis
   redis:
     image: redis
+
+volumes:
+  static-content:
