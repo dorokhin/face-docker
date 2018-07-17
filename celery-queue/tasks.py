@@ -39,7 +39,7 @@ def mark_faces(filename):
     img_url = '{0}/uploads/{1}'.format(SERVICE_URL, filename)
     faces = CF.face.detect(img_url)
 
-    with open(UPLOAD_FOLDER + filename) as f:
+    with open(os.path.join(UPLOAD_FOLDER, filename)) as f:
         image = f.read()
     img = Image.open(BytesIO(image))
 
