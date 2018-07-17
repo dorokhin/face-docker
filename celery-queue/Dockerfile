@@ -8,6 +8,7 @@ ENV SERVICE_URL https://castor.dorokhin.moscow
 COPY . /queue
 WORKDIR /queue
 
+RUN apt-get update && apt-get install libjpeg-dev
 RUN pip install -r requirements.txt
 
 ENTRYPOINT celery -A tasks worker --loglevel=info
