@@ -49,7 +49,7 @@ def mark_faces(filename):
         draw.rectangle(get_rectangle(face), outline='red')
 
     image_name = get_filename()
-    img.save(os.path.join(UPLOAD_FOLDER, str('/' + image_name)))
+    img.save(os.path.join(UPLOAD_FOLDER, image_name))
     return '''
     <!doctype html>
     <img src="{0}/uploads/{1}">
