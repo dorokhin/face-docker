@@ -3,7 +3,7 @@ FROM python:3.6-alpine
 ADD . /api
 WORKDIR /api
 
-RUN apk add build-base python-dev py-pip jpeg-dev zlib-dev postgresql
+RUN apk add build-base python-dev py-pip jpeg-dev zlib-dev postgresql-dev
 ENV LIBRARY_PATH=/lib:/usr/lib
 
 # install requirements
