@@ -9,7 +9,6 @@ services:
       - .env
     ports:
      - "5000:5000"
-
     volumes:
      - static-content:/uploads
     depends_on:
@@ -24,6 +23,12 @@ services:
      - static-content:/uploads
     depends_on:
       - redis
+  db:
+    image: "postgres:9.6"
+    env_file:
+      - .env
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
   monitor:
     build:
       context: celery-queue
@@ -38,6 +43,6 @@ services:
       - redis
   redis:
     image: redis
-
 volumes:
   static-content:
+  dbdata:

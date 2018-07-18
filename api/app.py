@@ -1,13 +1,19 @@
 import uuid
+import os
+import datetime
 from worker import celery
 import celery.states as states
-import os
-from flask import Flask, flash, request, redirect, url_for, send_from_directory
+
+from flask import Flask, flash, request, redirect, url_for, send_from_directory, render_template
+from forms import SignupForm
+from models import Signups
+from database import db_session
 
 UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER', '/home/deepblack/projects/python/face-docker/api/uploads')
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
 
 app = Flask(__name__)
+app.secret_key = os.environ['APP_SECRET_KEY']
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -73,3 +79,19 @@ def upload_file():
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+
+@app.route("/signup", methods=('GET', 'POST'))
+def signup():
+    form = SignupForm()
+    if form.validate_on_submit():
+        signup = Signups(name=form.name.data, email=form.email.data, date_signed_up=datetime.datetime.now())
+        db_session.add(signup)
+        db_session.commit()
+        return redirect(url_for('success'))
+    return render_template('signup.html', form=form)
+
+
+@app.route("/success")
+def success():
+    return "Thank you for signing up!"

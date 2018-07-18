@@ -35,6 +35,7 @@ def get_filename():
 @celery.task(name='tasks.mark_faces')
 def mark_faces(filename):
     img_url = '{0}/uploads/{1}'.format(SERVICE_URL, filename)
+    img_url = 'https://castor.dorokhin.moscow/uploads/fdce7b17-6a99-4dca-8519-52ed8d863c8e.jpg'
     faces = CF.face.detect(img_url)
 
     with open(os.path.join(UPLOAD_FOLDER, filename), 'rb') as f:
