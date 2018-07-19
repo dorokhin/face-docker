@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw
 import cognitive_face as CF
 from io import BytesIO
 
-CF.Key.set(os.getenv('API_KEY', 'None'))
+CF.Key.set(os.getenv('API_KEY'))
 
 BASE_URL = 'https://northeurope.api.cognitive.microsoft.com/face/v1.0'  # Replace with your regional Base URL
 CF.BaseUrl.set(BASE_URL)
