@@ -1,13 +1,13 @@
 import uuid
 import os
 import datetime
-from .worker import celery
+from worker import celery
 import celery.states as states
 
 from flask import Flask, flash, request, redirect, url_for, send_from_directory, render_template
-from .forms import SignupForm
-from .models import Signups
-from .database import db_session
+from forms import SignupForm
+from models import Signups
+from database import db_session
 
 UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER', '/home/deepblack/projects/python/face-docker/api/uploads')
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
